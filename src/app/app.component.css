@@ -1,0 +1,25 @@
+.main{
+    background-color: rgb(224, 221, 221);
+}
+
+.header{
+
+    background-color: #023133;
+    display: block;
+    padding: 3%;
+    color: white;
+    font-size: 26px;
+
+}
+
+@media (max-width: 640px)
+{img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+img {
+    border: 0;
+}
+
+}

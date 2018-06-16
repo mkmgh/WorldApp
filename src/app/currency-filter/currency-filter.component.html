@@ -1,0 +1,86 @@
+<div class="container" style="text-align:center">
+
+    <form class="form-inline" #myForm="ngForm" class="row">
+        <div class="form-group  col-md-12">
+          <input type="text" class="form-control btn-outline-info" name="filterCountryName" [(ngModel)]="filterCountryName.name" placeholder="Search by Country Name" />
+        </div>      
+    </form>
+
+
+    <form class="form-inline" #myForm="ngForm" class="row">
+        <div class="form-group  col-md-12">
+          <input type="text" class="form-control btn-outline-info" name="filterCapitalName" [(ngModel)]="filterCapitalName.capital" placeholder="Search by Capital Name" />
+        </div>      
+    </form>
+
+    
+    <br>
+
+    
+    <div class="row" style="text-align:center" *ngIf="countrysDataByCurr.length>0">
+       <div class="col-md-12" style="font-size:26px"><b>Filtered countries by "{{countrysDataByCurr[0].currencies[0].name}}" Currency</b></div><br><br><br>
+       <div *ngFor="let country of countrysDataByCurr | filterBy: filterCountryName | filterBy : filterCapitalName | paginate:{ itemsPerPage:6, currentPage: p} " class="col-md-4">
+           <div class="card text-center" style="border:rgb(194, 63, 63) 2px solid;"><br>
+            <img class="card-img-top" src="{{country.flag}}" style="height:200px" alt="Card image cap">
+             <div class="card-body">
+                Country Name: 
+               <h3 class="card-title">{{country.name}}</h3><br>
+                 Capital: 
+               <h3 class="card-title">{{country.capital}}</h3><br>
+                  Region:
+              <a routerLink='/region/{{country.region}}'><h3 class="card-title">{{country.region}}</h3></a><br>
+              <br>
+              Language : 
+              <h3 *ngFor="let country1 of country.languages" class="card-title">
+                  <a routerLink='/lang/{{country1.iso639_1}}'>
+                    {{country1.name}}
+                  </a>
+              </h3><br>
+              <br>
+
+              Currency : 
+              <h3 *ngFor="let country2 of country.currencies" class="card-title">
+                  <a routerLink='/currency/{{country2.code}}'>
+                    {{country2.name}}
+                  </a><br>
+              </h3><br>
+              <hr>
+              <a routerLink="/country/{{country.name}}" class="btn btn-primary">More Details</a>
+               <br><br>
+              </div>     
+              
+            </div>
+             <br><br>
+     
+             
+       </div>
+     
+     </div>
+
+     <br><hr>
+              <div class="row" style="text-align:center">
+                  <div class="col-md-12">
+                    <a class="btn btn-primary" (click)="goBackToPreviousPage()">Go Back</a>
+                  </div>
+                  <br><br>    
+              </div> <br><br> 
+             <pagination-controls (pageChange)="p = $event"></pagination-controls>   <br><br>
+
+
+    <go-top-button   [animate]="true"
+                 [speed]="50"
+                 [acceleration]="2"
+                 [scrollDistance]="300"
+                 [styles]="{
+                    'border-radius': '20px 20px 20px 20px',
+                    'right': '5px',
+                    'color': 'black',
+                    'border': '5px solid',
+                    'line-height': '20px'
+                 }">
+                <!-- <i class="fas fa-arrow-up"></i> -->
+              <i class='fa fa-arrow-up'></i>
+    </go-top-button>
+             
+
+</div>

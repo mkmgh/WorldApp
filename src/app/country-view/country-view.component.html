@@ -1,0 +1,126 @@
+<div class="container" style="text-align:center">
+    <div class="row" style="text-align:center" *ngIf="currentCountry" >
+      <div class="col-md-12" style="font-size:26px">Country Details</div>
+      <br><br>
+    </div>
+   
+    <div *ngFor="let country of currentCountry" class="col-md-12">
+          <div class="card h-100" style="border :1px solid rgb(226, 68, 68)">
+              <img class="card-img-top" src="{{country.flag}}" alt="Card image cap">
+              <div class="card-body" style="padding:50px">
+                Country Name :<br>
+                <h2 class="card-title">{{country.name||defaultValue}}</h2><br>
+  
+   <!--             
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"> Region : {{country.region}}</li>
+                  <li class="list-group-item">Capital : {{country.capital}}</li>
+                  <li class="list-group-item">Native Name : {{country.nativeName}}</li>
+                  <li class="list-group-item">Language : 
+                      <h2 *ngFor="let country1 of country.languages" class="card-title">
+                          <a routerLink='/lang/{{country1.iso639_1}}'>
+                            {{country1.name}}
+                          </a>
+                      </h2><br>
+                  </li>
+                  <li class="list-group-item">Currency :
+                      <h3 *ngFor="let country2 of country.currencies" class="card-title">
+                          <a routerLink='/currency/{{country2.code}}'>
+                            {{country2.name}}
+                          </a><br>
+                      </h3><br>
+        
+                  </li>
+                </ul>
+                <br>   
+                
+              -->            
+     
+              <div>
+                <tabset>
+                  <tab heading="Basic Details" id="tab1" style="text-align:left"> <br>
+                    Native Name :<h4> {{country.nativeName||defaultValue}} </h4><br><hr><br>
+                    Demonym : <h4>{{country.demonym||defaultValue}}</h4><br><hr><br>
+                    Capital : <h4>{{country.capital||defaultValue}}</h4><br><hr><br>
+                    Region : <h4>{{country.region||defaultValue}}</h4><br><hr><br>
+                    Subregion : <h4>{{country.subregion||defaultValue}}</h4><br><hr><br>
+                    Time Zone :<h4>{{country.timezones||defaultValue}}</h4><br><hr><br>
+                    Calling Code :<h4>{{country.callingCodes||defaultValue}}</h4><br><hr><br>
+                    Internet TLD :<h4>{{country.topLevelDomain||defaultValue}}</h4><br><hr><br>
+                    Numeric Code :<h4>{{country.numericCode||defaultValue}}</h4><br><hr><br>
+                  
+                  </tab>
+                  <tab heading="Geographic Details" style="text-align:left">
+                      <br>
+                      Area : <h4>{{country.area||defaultValue}}</h4><br><hr><br>
+                      Shared Borders :<h4>{{country.borders||defaultValue}}</h4><br><hr><br>
+                      Gini Index :<h4>{{country.gini||defaultValue}}</h4><br><hr><br>
+                      Latlng : <h4>{{country.latlng||defaultValue}}</h4><br><hr><br>
+                      Population :<h4> {{country.population||defaultValue}}</h4><br><hr><br>
+                  </tab>
+                  <tab heading="Alternate Spelling"  style="text-align:left">
+                      <br>
+                      Alternate Spelling :<br><br><h4> {{country.altSpellings  || defaultValue}}</h4><br><hr><br>
+                  </tab>
+                  <tab heading="Currency"  style="text-align:left"><br>
+                    Currency :<br><br>
+                      <h4 *ngFor="let country2 of country.currencies">
+                          <a routerLink='/currency/{{country2.code}}'>
+                            {{country2.name  || defaultValue}}
+                          </a>
+                      </h4><br><hr><br>
+                  </tab>
+
+                  <tab heading="Languages"  style="text-align:left"><br>
+                      Language :<br> <br>
+                      <h4 *ngFor="let country1 of country.languages">
+                          <a routerLink='/lang/{{country1.iso639_1}}'>
+                            {{country1.name  || defaultValue}}
+                          </a>
+                      </h4><br><hr><br>
+                  </tab>
+                
+                  <!--                  
+                  <tab heading="Regional Blocks"  style="text-align:left"><br>
+                      Regional Blocks :<br><br><h4 *ngFor="let country3 of country.regionalBlocs"> {{country3[0].name || defaultValue}}</h4><br><hr><br>
+                  </tab>
+  
+                -->
+                  <tab heading="Translations"  style="text-align:left"><br>
+                    Translations : <br><br><h4>{{country.translations.de  || defaultValue}}, {{country.translations.es || defaultValue}}, {{country.translations.fr || defaultValue}}, {{country.translations.ja || defaultValue}}, {{country.translations.it || defaultValue}}, {{country.translations.br || defaultValue}}, {{country.translations.pt || defaultValue}}, {{country.translations.nl || defaultValue}}, {{country.translations.hr || defaultValue}}, {{country.translations.fa || defaultValue}}</h4> <br><hr><br>
+                  </tab>
+
+                </tabset>
+              </div>
+     
+     
+     
+              <br><br>
+                 
+                <div class="row" style="text-align:center">
+                    <div class="col-md-12">
+                      <a class="btn btn-primary" (click)="goBackToPreviousPage()">Go Back</a>
+                    </div>
+                    <br><br>    
+                </div>
+        
+              </div>
+              <br><br>
+            </div>      
+          </div>      
+  <br><br>
+              <go-top-button   [animate]="true"
+                        [speed]="50"
+                        [acceleration]="2"
+                        [scrollDistance]="300"
+                        [styles]="{
+                            'border-radius': '20px 20px 20px 20px',
+                            'right': '5px',
+                            'color': 'black',
+                            'border': '5px solid',
+                            'line-height': '20px'
+                        }">
+                        <!-- <i class="fas fa-arrow-up"></i> -->
+                        <i class='fa fa-arrow-up'></i>
+              </go-top-button>
+  </div>
